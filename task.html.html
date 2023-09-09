@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="welcome-section">
+        <h1>Welcome to Temperature Converter</h1>
+        <button onclick="startConversion()">Start Conversion</button>
+    </div>
+
+    <div class="input-section" style="display: none;">
+        <h2 class="dark-heading">Enter Temperature</h2>
+        <label for="temperature">Temperature:</label>
+        <input type="text" id="temperature" placeholder="Enter temperature...">
+        <div id="input-unit">
+            <label for="unit">Select Unit:</label>
+            <select id="unit">
+                <option value="celsius">Celsius</option>
+                <option value="fahrenheit">Fahrenheit</option>
+                <option value="kelvin">Kelvin</option>
+            </select>
+            <button onclick="nextStep()">Submit</button>
+        </div>
+    </div>
+
+    <div class="output-section" style="display: none;">
+        <h2 class="dark-heading">Choose Output Unit</h2>
+        <div id="output-unit">
+            <label for="outputUnit">Select Output Unit:</label>
+            <select id="outputUnit">
+                <option value="celsius">Celsius</option>
+                <option value="fahrenheit">Fahrenheit</option>
+                <option value="kelvin">Kelvin</option>
+            </select>
+            <button onclick="convertTemperature()">Convert</button>
+        </div>
+    </div>
+
+    <div class="result-section" style="display: none;">
+        <h2 class="dark-heading">Converted Temperature</h2>
+        <div id="result"></div>
+        <div class="buttons">
+            <button onclick="exitConversion()">Exit</button>
+            <button onclick="startAgain()">Convert Again</button>
+        </div>
+    </div>
+
+    <script>
+        function startConversion() {
+            document.querySelector('.welcome-section').style.display = "none";
+            document.querySelector('.input-section').style.display = "block";
+        }
+
+        function nextStep() {
+            const temperatureInput = document.getElementById("temperature").value;
+            const inputUnit = document.getElementById("unit").value;
+
+            // Check for empty input
+            if (temperatureInput.trim() === "") {
+                alert("Please enter a temperature value.");
+                return;
+            }
+
+            document.querySelector('.input-section').style.display = "none";
+            document.querySelector('.output-section').style.display = "block";
+        }
+
+        function convertTemperature() {
+            const temperatureInput = document.getElementById("temperature").value;
+            const inputUnit = document.getElementById("unit").value;
+            const outputUnit = document.getElementById("outputUnit").value;
+
+            // Check for empty input
+            if (temperatureInput.trim() === "") {
+                alert("Please enter a temperature value.");
+                return;
+            }
+
+            // Check for same unit conversion
+            if (inputUnit === outputUnit) {
+                alert("Please select a different output unit.");
+                return;
+            }
+
+            const temperature = parseFloat(temperatureInput);
+
+            // Perform temperature conversion based on input and output units
+            let convertedTemperature;
+            let convertedUnit;
+
+            if (inputUnit === "celsius") {
+                if (outputUnit === "fahrenheit") {
+                    convertedTemperature = (temperature * 9 / 5) + 32;
+                    convertedUnit = "°F";
+                } else if (outputUnit === "kelvin") {
+                    convertedTemperature = temperature + 273.15;
+                    convertedUnit = "K";
+                }
+            } else if (inputUnit === "fahrenheit") {
+                if (outputUnit === "celsius") {
+                    convertedTemperature = (temperature - 32) * 5 / 9;
+                    convertedUnit = "°C";
+                } else if (outputUnit === "kelvin") {
+                    convertedTemperature = (temperature - 32) * 5 / 9 + 273.15;
+                    convertedUnit = "K";
+                }
+            } else if (inputUnit === "kelvin") {
+                if (outputUnit === "celsius") {
+                    convertedTemperature = temperature - 273.15;
+                    convertedUnit = "°C";
+                } else if (outputUnit === "fahrenheit") {
+                    convertedTemperature = (temperature - 273.15) * 9 / 5 + 32;
+                    convertedUnit = "°F";
+                }
+            }
+
+            // Display the result
+            document.querySelector('.output-section').style.display = "none";
+            document.querySelector('.result-section').style.display = "block";
+            document.getElementById("result").textContent = `${convertedTemperature.toFixed(2)} ${convertedUnit}`;
+        }
+
+        function exitConversion() {
+            document.querySelector('.result-section').style.display = "none";
+            alert("Successfully Exit");
+            document.querySelector('.welcome-section').style.display = "block";
+        }
+
+        function startAgain() {
+            document.querySelector('.result-section').style.display = "none";
+            document.querySelector('.input-section').style.display = "block";
+        }
+    </script>
+</body>
+
+</html>

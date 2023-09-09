@@ -1,0 +1,95 @@
+/* styles.css */
+body {
+    font-family: cursive, "Brush Script MT", fantasy;
+    margin: 0;
+    padding: 0;
+    background-color: #f3f3f3;
+    background-image: url('background-image.jpg');
+    /* Replace 'background-image.jpg' with the path to your background image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Center content vertically and horizontally */
+html,
+body {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Add some padding around sections */
+section {
+    padding: 20px;
+}
+
+div {
+    max-width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+div:hover {
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4);
+    transform: scale(1.02);
+}
+
+h1,
+h2 {
+    text-align: center;
+    color: #333;
+    font-weight: bold;
+}
+
+label {
+    color: #666;
+}
+
+button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Custom styling for the input fields */
+input[type="text"],
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Custom styling for the result box */
+.result-box {
+    text-align: center;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Custom styling for the buttons in the result box */
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
